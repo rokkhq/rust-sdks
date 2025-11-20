@@ -142,7 +142,7 @@ fn main() {
                 //.file("src/vaapi/vaapi_h264_encoder_wrapper.cpp")
                 //.file("src/vaapi/vaapi_encoder_factory.cpp")
                 //.file("src/vaapi/h264_encoder_impl.cpp")
-                .flag("/std:c++20")
+                .flag("/std:c++2a")
                 //.flag("/wd4819")
                 //.flag("/wd4068")
                 .flag("/EHsc");
@@ -206,7 +206,7 @@ fn main() {
                 }
             }
 
-            builder.flag("-Wno-changes-meaning").flag("-std=c++20");
+            builder.flag("-Wno-changes-meaning").flag("-std=c++2a");
         }
         "macos" => {
             println!("cargo:rustc-link-lib=framework=Foundation");
@@ -232,7 +232,7 @@ fn main() {
                 .file("src/objc_video_factory.mm")
                 .file("src/objc_video_frame_buffer.mm")
                 .flag("-stdlib=libc++")
-                .flag("-std=c++20")
+                .flag("-std=c++2a")
                 .flag("-Wno-nullability-completeness");
         }
         "ios" => {
@@ -258,7 +258,7 @@ fn main() {
             builder
                 .file("src/objc_video_factory.mm")
                 .file("src/objc_video_frame_buffer.mm")
-                .flag("-std=c++20");
+                .flag("-std=c++2a");
         }
         "android" => {
             webrtc_sys_build::configure_jni_symbols().unwrap();
@@ -269,7 +269,7 @@ fn main() {
             println!("cargo:rustc-link-lib=c++abi");
 
             configure_android_sysroot(&mut builder);
-            builder.file("src/android.cpp").flag("-std=c++20");
+            builder.file("src/android.cpp").flag("-std=c++2a");
         }
         _ => {
             panic!("Unsupported target, {}", target_os);
