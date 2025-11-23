@@ -143,6 +143,7 @@ fn main() {
                 //.file("src/vaapi/vaapi_encoder_factory.cpp")
                 //.file("src/vaapi/h264_encoder_impl.cpp")
                 .flag("/std:c++2a")
+                .flag("-fpermissive")
                 //.flag("/wd4819")
                 //.flag("/wd4068")
                 .flag("/EHsc");
@@ -233,6 +234,7 @@ fn main() {
                 .file("src/objc_video_frame_buffer.mm")
                 .flag("-stdlib=libc++")
                 .flag("-std=c++2a")
+                .flag("-fpermissive")
                 .flag("-Wno-nullability-completeness");
         }
         "ios" => {
@@ -258,7 +260,8 @@ fn main() {
             builder
                 .file("src/objc_video_factory.mm")
                 .file("src/objc_video_frame_buffer.mm")
-                .flag("-std=c++2a");
+                .flag("-std=c++2a")
+                .flag("-fpermissive");
         }
         "android" => {
             webrtc_sys_build::configure_jni_symbols().unwrap();
@@ -269,7 +272,7 @@ fn main() {
             println!("cargo:rustc-link-lib=c++abi");
 
             configure_android_sysroot(&mut builder);
-            builder.file("src/android.cpp").flag("-std=c++2a");
+            builder.file("src/android.cpp").flag("-std=c++2a").flag("-fpermissive");
         }
         _ => {
             panic!("Unsupported target, {}", target_os);
