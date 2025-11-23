@@ -206,7 +206,7 @@ fn main() {
                 }
             }
 
-            builder.flag("-Wno-changes-meaning").flag("-std=c++2a");
+            builder.flag("-Wno-changes-meaning").flag("-std=c++2a").flag("-fpermissive");
         }
         "macos" => {
             println!("cargo:rustc-link-lib=framework=Foundation");
