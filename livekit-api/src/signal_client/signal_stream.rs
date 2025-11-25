@@ -95,6 +95,8 @@ impl SignalStream {
             .map_err(|_| SignalError::TokenFormat)?;
         request.headers_mut().insert(AUTHORIZATION, auth_header);
 
+        log::debug!("request: {:?}", request);
+
         #[cfg(feature = "signal-client-tokio")]
         let ws_stream = {
             // Check for HTTP_PROXY or HTTPS_PROXY environment variables
